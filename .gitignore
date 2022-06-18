@@ -33,3 +33,5 @@ yarn-error.log*
 
 # next config
 /next.config.js
+debug.log
+next.config.js
