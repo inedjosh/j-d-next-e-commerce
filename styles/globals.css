@@ -14,3 +14,39 @@ a {
 * {
   box-sizing: border-box;
 }
+
+li {
+  list-style: none;
+}
+
+.active {
+  color: red;
+}
+
+input {
+  border: 1px solid #ccc;
+  width: 50%;
+  height: 30px;
+}
+
+form div {
+  margin: 10px 0;
+}
+
+.overlay {
+  position: "absolute";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------- Products ------------- */
+@import url("./product.css");
