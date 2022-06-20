@@ -13,6 +13,8 @@ function Header() {
 
   const router = useRouter();
 
+  const [name, setName] = useState("");
+
   const isActive = (route) => {
     if (route === router.pathname) {
       return "active";
@@ -22,10 +24,10 @@ function Header() {
   };
 
   let fName = "";
-  if (auth.user) {
-    let nameArray = auth.user.name;
-    fName = nameArray.split(/(\s+)/)[0];
-  }
+
+  useEffect(() => {
+    setName(auth.user?.name);
+  }, [auth.user]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -39,9 +41,9 @@ function Header() {
   let dropDownTemplate;
   if (auth.user) {
     dropDownTemplate = (
-      <>
+      <div>
         <li>
-          <Link href="#">
+          <Link href="/account">
             <a>My account</a>
           </Link>
         </li>
@@ -61,11 +63,11 @@ function Header() {
             <a onClick={handleLogout}>Logout</a>
           </Link>
         </li>
-      </>
+      </div>
     );
   } else {
     dropDownTemplate = (
-      <>
+      <div>
         <div>
           <Link href="/signup">
             <a>Signup</a>
@@ -74,7 +76,7 @@ function Header() {
         <Link href="/login">
           <a>Login</a>
         </Link>
-      </>
+      </div>
     );
   }
 
@@ -113,14 +115,14 @@ function Header() {
             position: "relative",
           }}
         >
-          <Link href="#" style={{ marginRight: 20 }}>
+          <div style={{ marginRight: 20 }}>
             <a
               style={{ marginRight: 5 }}
               className={showDropDown ? "active" : ""}
             >
-              {auth.user ? `Hi, ${fName}` : "Account"}
+              {auth.user ? `Hi, ${name}` : "Account"}
             </a>
-          </Link>
+          </div>
           <div>{showDropDown ? <BsChevronDown /> : <BsChevronUp />}</div>
           {showDropDown === true && (
             <div
