@@ -1,7 +1,11 @@
 import React from "react";
 
 function help() {
-  return <div>help now </div>;
+  return (
+    <div>
+      <p>Help page</p>
+    </div>
+  );
 }
 
 export default help;
