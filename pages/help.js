@@ -4,6 +4,7 @@ function help() {
   return (
     <div>
       <p>Help page</p>
+      <p>Welcome</p>
     </div>
   );
 }
