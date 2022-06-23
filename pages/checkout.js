@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 function checkout(props) {
   const { state, dispatch } = useContext(DataContext);
-  const { cart, auth } = state;
+  const { cart, auth, orders } = state;
 
   const router = useRouter();
 
@@ -53,6 +53,7 @@ function checkout(props) {
         address={address}
         phone={phone}
         dispatch={dispatch}
+        orders={orders}
       />
     </div>
   );

@@ -17,10 +17,10 @@ const reducers = (state, action) => {
         ...state,
         cart: action.payload,
       };
-    case ACTIONS.ORDER_DETAILS:
+    case ACTIONS.ADD_ORDERS:
       return {
         ...state,
-        orderDeatils: action.payload,
+        orders: action.payload,
       };
     default:
       return state;

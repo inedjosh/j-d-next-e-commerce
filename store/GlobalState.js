@@ -9,11 +9,11 @@ export const DataProvider = ({ children }) => {
     notify: {},
     auth: {},
     cart: [],
-    orderDetails: {},
+    orders: [],
   };
 
   const [state, dispatch] = useReducer(reducers, initialState);
-  const { cart } = state;
+  const { cart, auth } = state;
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
@@ -50,6 +50,15 @@ export const DataProvider = ({ children }) => {
     localStorage.setItem("myCart", JSON.stringify(cart));
   }, [cart]);
 
+  useEffect(() => {
+    if (auth.token) {
+      getData("order", auth.token).then((res) => {
+        if (res.err) dispatch({ type: "NOTIFY", payload: { error: res.err } });
+
+        dispatch({ type: "ADD_ORDERS", payload: res.orders });
+      });
+    }
+  }, [auth.token]);
   return (
     <DataContext.Provider value={{ state, dispatch }}>
       {children}
