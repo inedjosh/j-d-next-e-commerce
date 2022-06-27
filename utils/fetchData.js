@@ -25,7 +25,7 @@ export const postData = async (url, post, token) => {
 
   const data = await res.json();
   console.log(data);
-  console.log(`token: ${token}, url: ${url}, post: ${post}`);
+
   return data;
 };
 
@@ -44,7 +44,6 @@ export const putData = async (url, post, token) => {
 };
 
 export const patchData = async (url, post, token) => {
-  console.log(token);
   const res = await fetch(`${baseUrl}/api/${url}`, {
     method: "PATCH",
     headers: {

@@ -10,10 +10,12 @@ export const DataProvider = ({ children }) => {
     auth: {},
     cart: [],
     orders: [],
+    users: [],
   };
 
   const [state, dispatch] = useReducer(reducers, initialState);
   const { cart, auth } = state;
+  const { user } = auth;
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
@@ -56,6 +58,15 @@ export const DataProvider = ({ children }) => {
         if (res.err) dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
         dispatch({ type: "ADD_ORDERS", payload: res.orders });
+      });
+    }
+
+    if (user?.role === "admin") {
+      getData("user", auth.token).then((res) => {
+        if (res.err)
+          return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+
+        dispatch({ type: "ADD_USERS", payload: res.users });
       });
     }
   }, [auth.token]);

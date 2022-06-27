@@ -5,6 +5,7 @@ export const ACTIONS = {
   ADD_ORDERS: "ADD_ORDERS",
   CATEGORY: "CATEGORY",
   PRODUCT: "PRODUCT",
+  ADD_USERS: "ADD_USERS",
 };
 
 export const addToCart = (product, cart) => {
@@ -49,4 +50,9 @@ export const deleteItem = (data, id) => {
   console.log(data, id);
   const newData = data.filter((item) => item._id !== id);
   return { type: "ADD_CART", payload: newData };
+};
+
+export const updateItem = (data, id, post, type) => {
+  const newData = data.map((item) => (item._id === id ? post : item));
+  return { type, payload: newData };
 };

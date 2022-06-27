@@ -31,20 +31,18 @@ const getUsers = async (req, res) => {
 const uploadInfor = async (req, res) => {
   try {
     const result = await auth(req, res);
-    const { name } = req.body;
+    const { name, avatar } = req.body;
 
     const newUser = await Users.findOneAndUpdate(
       { _id: result.id },
-      { name },
-      {
-        returnNewDocument: true,
-      }
+      { name, avatar }
     );
 
     res.json({
       msg: "Update Success!",
       user: {
         name,
+        avatar,
         email: newUser.email,
         role: newUser.role,
       },
