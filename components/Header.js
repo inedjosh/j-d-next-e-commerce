@@ -23,8 +23,6 @@ function Header() {
     }
   };
 
-  let fName = "";
-
   useEffect(() => {
     setName(auth.user?.name);
   }, [auth.user]);
@@ -38,6 +36,29 @@ function Header() {
     return router.push("/");
   };
 
+  const adminNav = () => {
+    return (
+      <div>
+        <li>
+          <Link href="/users">
+            <a>Users</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/products">
+            <a>Products</a>
+          </Link>
+        </li>
+
+        <li>
+          <Link href="/categories">
+            <a onClick={handleLogout}>Categories</a>
+          </Link>
+        </li>
+      </div>
+    );
+  };
+
   let dropDownTemplate;
   if (auth.user) {
     dropDownTemplate = (
@@ -48,15 +69,11 @@ function Header() {
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link href="/orders">
             <a>orders</a>
           </Link>
         </li>
-        <li>
-          <Link href="#">
-            <a>Saved items</a>
-          </Link>
-        </li>
+        {auth.user.role === "admin" && auth.user.root === true && adminNav()}
         <hr />
         <li>
           <Link href="#">

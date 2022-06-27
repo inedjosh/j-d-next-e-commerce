@@ -39,7 +39,7 @@ const getOrders = async (req, res) => {
 const createOrder = async (req, res) => {
   try {
     const result = await auth(req, res);
-    const { address, phone, cart, total } = req.body;
+    const { address, phone, cart, total, reference } = req.body;
 
     const newOrder = new Orders({
       user: result.id,
@@ -47,6 +47,7 @@ const createOrder = async (req, res) => {
       phone,
       cart,
       total,
+      reference,
     });
 
     // cart.filter((item) => {

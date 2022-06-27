@@ -3,7 +3,7 @@ import { usePaystackPayment } from "react-paystack";
 import { postData } from "../utils/fetchData";
 import { DataContext } from "./../store/GlobalState";
 
-const Paystack = ({ auth, total, cart, address, phone, dispatch }) => {
+const Paystack = ({ auth, total, cart, address, phone }) => {
   const { state, dispatch } = useContext(DataContext);
   const { orders } = state;
   console.log(orders);
@@ -19,16 +19,18 @@ const Paystack = ({ auth, total, cart, address, phone, dispatch }) => {
     // Implementation for whatever you want to do with reference and after success call.
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
-    postData("order", { address, phone, cart, total }, auth.token).then(
-      (res) => {
-        if (res.err)
-          return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+    postData(
+      "order",
+      { address, phone, cart, total, reference },
+      auth.token
+    ).then((res) => {
+      if (res.err)
+        return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
-        dispatch({ type: "ADD_CART", payload: [] });
-        dispatch({ type: "ADD_ORDERS", payload: [...orders, res.newOrder] });
-        return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
-      }
-    );
+      dispatch({ type: "ADD_CART", payload: [] });
+      dispatch({ type: "ADD_ORDERS", payload: [...orders, res.newOrder] });
+      return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+    });
   };
 
   // you can call this function anything

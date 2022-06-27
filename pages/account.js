@@ -20,6 +20,13 @@ function account() {
     setEmail(auth.user?.email);
   }, [auth]);
 
+  const getTotal = (cart) => {
+    const res = cart.reduce((prev, item) => {
+      return prev + item.amount * item.quantity;
+    }, 0);
+    return res;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -81,6 +88,11 @@ function account() {
   return (
     <div style={{ position: "relative" }}>
       <div>
+        <h1>
+          {auth.user?.role === "admin" && auth.user?.root === true
+            ? "Admin Profile"
+            : "My Profile"}
+        </h1>
         {editProfile ? (
           <div>
             <form onSubmit={handleSubmit}>
@@ -158,14 +170,25 @@ function account() {
         </div>
       </div>
       <div style={{ marginTop: 50 }}>
-        <h1>Orders</h1>
+        <h1>Pending Orders</h1>
         {orders.length > 1 ? (
-          orders.map((order) => {
-            <div style={{ display: "flex" }} key={order._id}>
-              {console.log(order._id)}
-              <h1>Date:{new Date(order.createdAt).toLocaleDateString()}</h1>
-            </div>;
-          })
+          <div>
+            {orders.map((order) => {
+              return (
+                <div style={{ display: "flex" }} key={order._id}>
+                  <h1>
+                    Date: {new Date(order.createdAt).toLocaleDateString()}
+                  </h1>
+
+                  <h1>Number of orders: {order.cart.length}</h1>
+                  <h1>Total: N{getTotal(order.cart)}</h1>
+                </div>
+              );
+            })}
+            <Link href={"/orders"}>
+              <a>View All orders</a>
+            </Link>
+          </div>
         ) : (
           <div>
             <h1>You have no orders yet</h1>
