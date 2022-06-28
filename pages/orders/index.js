@@ -12,12 +12,18 @@ function order(props) {
   const { orders, auth } = state;
   const router = useRouter();
 
+  const [myOrders, setMyOders] = useState([]);
+
   const getTotal = (cart) => {
     const res = cart.reduce((prev, item) => {
       return prev + item.amount * item.quantity;
     }, 0);
     return res;
   };
+
+  useEffect(() => {
+    setMyOders(orders);
+  }, [orders]);
 
   const markDelivered = (order) => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
@@ -56,47 +62,48 @@ function order(props) {
           ? "Users orders"
           : "My Orders"}
       </h1>
-      {orders.map((order) => {
-        return (
-          <div key={order._id}>
-            <Link href={`/orders/${order._id}`}>
-              <a>
-                <div style={{ padding: 20 }} key={order._id}>
-                  <h1>
-                    Date: {new Date(order.createdAt).toLocaleDateString()}
-                  </h1>
-                  <h1>Number of orders: {order.cart.length}</h1>
-                  <h1>Total: N{getTotal(order.cart)}</h1>
-                  <div>
+      {myOrders &&
+        myOrders?.map((order) => {
+          return (
+            <div key={order._id}>
+              <Link href={`/orders/${order._id}`}>
+                <a>
+                  <div style={{ padding: 20 }} key={order._id}>
                     <h1>
-                      {" "}
-                      Delivered:{" "}
-                      {order.delivered ? "Delivered" : "Not Delivered"}
+                      Date: {new Date(order.createdAt).toLocaleDateString()}
                     </h1>
+                    <h1>Number of orders: {order.cart.length}</h1>
+                    <h1>Total: N{getTotal(order.cart)}</h1>
+                    <div>
+                      <h1>
+                        {" "}
+                        Delivered:{" "}
+                        {order.delivered ? "Delivered" : "Not Delivered"}
+                      </h1>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </Link>
-            {auth.user.role === "admin" &&
-              auth.user.root === true &&
-              order.delivered !== true && (
-                <button
-                  onClick={() => markDelivered(order)}
-                  style={{
-                    backgroundColor: "orange",
-                    width: 200,
-                    height: 40,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  Mark as delivered
-                </button>
-              )}
-          </div>
-        );
-      })}
+                </a>
+              </Link>
+              {auth.user.role === "admin" &&
+                auth.user.root === true &&
+                order.delivered !== true && (
+                  <button
+                    onClick={() => markDelivered(order)}
+                    style={{
+                      backgroundColor: "orange",
+                      width: 200,
+                      height: 40,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    Mark as delivered
+                  </button>
+                )}
+            </div>
+          );
+        })}
     </div>
   );
 }
