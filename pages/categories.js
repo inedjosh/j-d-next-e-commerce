@@ -72,6 +72,8 @@ function categories(props) {
         return (
           <div key={category._id}>
             <p>{category.name}</p>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={() => handleDelete(category)}>Delete</button>
           </div>
         );
       })}
