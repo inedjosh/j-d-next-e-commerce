@@ -24,7 +24,7 @@ const createCategories = async (req, res) => {
     const { name } = req.body;
 
     if (!name)
-      return res.status(400).json({ err: "Name cannot be left blank" });
+      return res.status(400).json({ err: "Name cannot be left empty" });
 
     const newCategory = new Categories({ name });
 
