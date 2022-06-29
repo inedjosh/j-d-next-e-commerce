@@ -31,7 +31,7 @@ const createCategories = async (req, res) => {
     await newCategory.save();
 
     res.json({
-      message: "Success!, new catrgory created",
+      message: "Success! new catrgory created",
       newCategory,
     });
   } catch (error) {
