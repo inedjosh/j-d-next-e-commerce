@@ -52,7 +52,7 @@ const Modal = () => {
 
         if (item.type === "ADD_USERS") deleteUser(item);
 
-        if (item.type === "ADD_CATEGORIES") deleteCategories(item);
+        if (item.type === "ADD_CATEGORY") deleteCategories(item);
 
         if (item.type === "DELETE_PRODUCT") deleteProduct(item);
 

@@ -1,4 +1,6 @@
 import React, { useContext, useState } from "react";
+import Modal from "../components/Modal";
+import { updateItem } from "../store/Actions";
 import { DataContext } from "../store/GlobalState";
 import { postData, putData } from "../utils/fetchData";
 
@@ -11,6 +13,8 @@ function categories(props) {
   const [name, setName] = useState("");
   const [err, setErr] = useState("");
   const [id, setId] = useState("");
+  const [edit, setEdit] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,16 +25,16 @@ function categories(props) {
         payload: { error: "Authentication is not vaild." },
       });
 
-    if (!name) return setErr("Name cannot be empty");
+    if (!name && !edit) return setErr("Name cannot be empty");
 
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
     let res;
     if (id) {
-      res = await putData(`categories/${id}`, { name }, auth.token);
+      res = await putData(`categories/${id}`, { name: edit }, auth.token);
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
-      dispatch(updateItem(categories, id, res.category, "ADD_CATEGORIES"));
+      dispatch(updateItem(categories, id, res.category, "ADD_CATEGORY"));
     } else {
       res = await postData("categories", { name }, auth.token);
       if (res.err)
@@ -46,24 +50,52 @@ function categories(props) {
     return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
   };
 
-  const handleEditCategory = (catogory) => {
-    setId(catogory._id);
-    setName(catogory.name);
+  const handleEditCategory = (category) => {
+    setId(category._id);
+    setEdit(category.name);
+  };
+
+  console.log(edit, id);
+
+  const handleDeleteCategory = (category) => {
+    setOpenModal(true);
+    dispatch({
+      type: "ADD_MODAL",
+      payload: [
+        {
+          data: categories,
+          id: category._id,
+          title: category.name,
+          type: "ADD_MODAL",
+          category: "Category",
+        },
+      ],
+    });
   };
 
   return (
     <div>
+      {openModal && <Modal />}
       <h1>categories</h1>
 
       <form onSubmit={handleSubmit}>
         <h4>Add a new category</h4>
         {err && <small style={{ display: "block" }}>{err}</small>}
-        <input
-          type={"text"}
-          placeholder={"name of category"}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        {!edit ? (
+          <input
+            type={"text"}
+            placeholder={"name of category"}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        ) : (
+          <input
+            type={"text"}
+            placeholder={"name of category"}
+            value={edit}
+            onChange={(e) => setEdit(e.target.value)}
+          />
+        )}
         <button type="submit">Add</button>
       </form>
 
@@ -72,8 +104,11 @@ function categories(props) {
         return (
           <div key={category._id}>
             <p>{category.name}</p>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={() => handleDelete(category)}>Delete</button>
+            <button onClick={() => handleEditCategory(category)}>Edit</button>
+            <br />
+            <button onClick={() => handleDeleteCategory(category)}>
+              Delete
+            </button>
           </div>
         );
       })}

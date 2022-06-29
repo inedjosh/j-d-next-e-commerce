@@ -1,5 +1,5 @@
 import connectDB from "../../../utils/connectDB";
-import Categories from "../../../models/categoriesModel";
+import Categories from "./../../../models/Categories";
 import Products from "../../../models/productModel";
 import auth from "../../../middleware/auth";
 

@@ -58,7 +58,6 @@ function users(props) {
   };
 
   const handleDelete = (customer) => {
-    console.log(customer);
     setOpenModal(true);
     dispatch({
       type: "ADD_MODAL",
