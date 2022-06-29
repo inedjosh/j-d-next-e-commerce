@@ -36,7 +36,7 @@ function account() {
   const updateProfile = async () => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
-    patchData("user/updateUser", { name }, auth.token).then((res) => {
+    patchData("user", { name }, auth.token).then((res) => {
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 

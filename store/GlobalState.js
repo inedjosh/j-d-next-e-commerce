@@ -11,6 +11,8 @@ export const DataProvider = ({ children }) => {
     cart: [],
     orders: [],
     users: [],
+    modal: [],
+    categories: [],
   };
 
   const [state, dispatch] = useReducer(reducers, initialState);
@@ -32,14 +34,15 @@ export const DataProvider = ({ children }) => {
       });
     }
 
-    // getData('categories').then(res => {
-    //     if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
-
-    //     dispatch({
-    //         type: "ADD_CATEGORIES",
-    //         payload: res.categories
-    //     })
-    // })
+    getData("categories").then((res) => {
+      if (res.err)
+        return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+      console.log(res);
+      dispatch({
+        type: "ADD_CATEGORY",
+        payload: res.categories,
+      });
+    });
   }, []);
 
   useEffect(() => {

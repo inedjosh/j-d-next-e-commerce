@@ -52,7 +52,7 @@ function Header() {
 
         <li>
           <Link href="/categories">
-            <a onClick={handleLogout}>Categories</a>
+            <a>Categories</a>
           </Link>
         </li>
       </div>

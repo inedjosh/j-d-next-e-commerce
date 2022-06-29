@@ -42,6 +42,6 @@ const login = async (req, res) => {
       },
     });
   } catch (err) {
-    return res.status(500).json({ err: err.message });
+    return res.status(500).json({ err: res.message });
   }
 };
