@@ -55,8 +55,6 @@ function categories(props) {
     setEdit(category.name);
   };
 
-  console.log(edit, id);
-
   const handleDeleteCategory = (category) => {
     setOpenModal(true);
     dispatch({
@@ -66,7 +64,7 @@ function categories(props) {
           data: categories,
           id: category._id,
           title: category.name,
-          type: "ADD_MODAL",
+          type: "ADD_CATEGORY",
           category: "Category",
         },
       ],
@@ -82,21 +80,26 @@ function categories(props) {
         <h4>Add a new category</h4>
         {err && <small style={{ display: "block" }}>{err}</small>}
         {!edit ? (
-          <input
-            type={"text"}
-            placeholder={"name of category"}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <div>
+            <input
+              type={"text"}
+              placeholder={"name of category"}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <button type="submit">Add</button>
+          </div>
         ) : (
-          <input
-            type={"text"}
-            placeholder={"name of category"}
-            value={edit}
-            onChange={(e) => setEdit(e.target.value)}
-          />
+          <div>
+            <input
+              type={"text"}
+              placeholder={"name of category"}
+              value={edit}
+              onChange={(e) => setEdit(e.target.value)}
+            />
+            <button type="submit">Edit</button>
+          </div>
         )}
-        <button type="submit">Add</button>
       </form>
 
       <h1>my categories</h1>
