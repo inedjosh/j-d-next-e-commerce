@@ -5,6 +5,8 @@ import { useState } from "react";
 function productId({ product }) {
   const [productData, setProductData] = useState(product.product);
 
+  console.log(productData);
+
   return (
     <div>
       {productData.images.length > 1 ? (

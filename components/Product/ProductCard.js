@@ -7,7 +7,47 @@ import { addToCart } from "./../../store/Actions";
 
 function ProductCard({ products }) {
   const { state, dispatch } = useContext(DataContext);
-  const { cart } = state;
+  const { cart, auth } = state;
+
+  const adminButtons = (product) => {
+    return (
+      <div>
+        <Link href={`/create/${product._id}`}>
+          <a>Edit Product </a>
+        </Link>
+        <button
+          onClick={() =>
+            dispatch({
+              type: "ADD_MODAL",
+              payload: [
+                {
+                  data: "",
+                  id: product._id,
+                  title: product.title,
+                  type: "DELETE_PRODUCT",
+                },
+              ],
+            })
+          }
+        >
+          Delete
+        </button>
+      </div>
+    );
+  };
+
+  const userButtons = (product) => {
+    return (
+      <div>
+        <Link href={`/product/${product._id}`}>
+          <a>View Product </a>
+        </Link>
+        <button onClick={() => dispatch(addToCart(product, cart))}>
+          Add to cart
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -28,16 +68,12 @@ function ProductCard({ products }) {
                 <div>
                   <div>
                     <div>
-                      <Link href={`/product/${product._id}`}>
-                        <a href={product.href}>{product.title}</a>
-                      </Link>
+                      <h2 href={product.href}>{product.title}</h2>
                     </div>
                     <div>
-                      <button
-                        onClick={() => dispatch(addToCart(product, cart))}
-                      >
-                        Add to cart
-                      </button>
+                      {auth.user.role === "admin"
+                        ? adminButtons(product)
+                        : userButtons(product)}
                     </div>
                     <p>{product.colors[0]}</p>
                   </div>
