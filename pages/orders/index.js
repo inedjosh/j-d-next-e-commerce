@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import LoginAlert from "../../components/LoginAlert";
 import { updateItem } from "../../store/Actions";
 
-function order(props) {
+function Order(props) {
   const { state, dispatch } = useContext(DataContext);
   const { orders, auth } = state;
   const router = useRouter();
@@ -108,4 +108,4 @@ function order(props) {
   );
 }
 
-export default order;
+export default Order;

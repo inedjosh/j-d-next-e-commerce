@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { patchData } from "../utils/fetchData";
 import { DataContext } from "./../store/GlobalState";
 
-function account() {
+function Account() {
   const { state, dispatch } = useContext(DataContext);
   const { auth, orders } = state;
 
@@ -202,4 +202,4 @@ function account() {
   );
 }
 
-export default account;
+export default Account;

@@ -2,7 +2,7 @@ import React from "react";
 import { getData } from "../../utils/fetchData";
 import { useState } from "react";
 
-function productId({ product }) {
+function ProductId({ product }) {
   const [productData, setProductData] = useState(product.product);
 
   console.log(productData);
@@ -27,7 +27,7 @@ function productId({ product }) {
   );
 }
 
-export default productId;
+export default ProductId;
 
 export async function getServerSideProps({ params: { productId } }) {
   const productData = await getData(`product/${productId}`);

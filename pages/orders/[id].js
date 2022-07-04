@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import LoadingPage from "../../components/LoadingPage";
 import OrderDetails from "../../components/OrderDetails";
 
-function orderId(props) {
+function OrderId(props) {
   const { state, dispatch } = useContext(DataContext);
   const { orders, auth } = state;
   const router = useRouter();
@@ -29,4 +29,4 @@ function orderId(props) {
   );
 }
 
-export default orderId;
+export default OrderId;
