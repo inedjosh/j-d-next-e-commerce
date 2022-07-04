@@ -7,7 +7,7 @@ import { updateItem } from "../store/Actions";
 import { DataContext } from "../store/GlobalState";
 import { patchData } from "../utils/fetchData";
 
-function users(props) {
+function Users(props) {
   const { state, dispatch } = useContext(DataContext);
   const { users, auth } = state;
   const router = useRouter();
@@ -119,4 +119,4 @@ function users(props) {
   );
 }
 
-export default users;
+export default Users;

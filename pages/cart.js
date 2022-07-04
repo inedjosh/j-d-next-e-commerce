@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import loginValidate from "../utils/LoginValidate";
 import Cookie from "js-cookie";
 
-function cart() {
+function Cart() {
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth } = state;
 
@@ -172,4 +172,4 @@ function cart() {
   );
 }
 
-export default cart;
+export default Cart;

@@ -1,7 +1,7 @@
 import React from "react";
 
-function changepassword(props) {
+function Changepassword(props) {
   return <div></div>;
 }
 
-export default changepassword;
+export default Changepassword;

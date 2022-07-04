@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    BASE_URL: "http://localhost:3000",
+    BASE_URL: "https://jd-stores.herokuapp.com/",
     MONGODB_URI:
       "mongodb+srv://jesus-tribe-commerce:jesus-tribe-commerce@cluster0.s589e.mongodb.net/?retryWrites=true&w=majority",
     ACCESS_KEY:

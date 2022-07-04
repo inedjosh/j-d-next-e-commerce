@@ -5,7 +5,7 @@ import CheckoutCardTwo from "../components/CheckoutCardTwo";
 import { DataContext } from "./../store/GlobalState";
 import { useRouter } from "next/router";
 
-function checkout(props) {
+function Checkout(props) {
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth, orders } = state;
 
@@ -59,4 +59,4 @@ function checkout(props) {
   );
 }
 
-export default checkout;
+export default Checkout;

@@ -4,7 +4,7 @@ import { updateItem } from "../store/Actions";
 import { DataContext } from "../store/GlobalState";
 import { postData, putData } from "../utils/fetchData";
 
-function categories(props) {
+function Categories(props) {
   const { state, dispatch } = useContext(DataContext);
   const { categories, auth } = state;
 
@@ -119,4 +119,4 @@ function categories(props) {
   );
 }
 
-export default categories;
+export default Categories;

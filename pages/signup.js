@@ -5,7 +5,7 @@ import { DataContext } from "./../store/GlobalState";
 import { postData } from "../utils/fetchData";
 import { useRouter } from "next/router";
 
-function signup() {
+function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -88,4 +88,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;

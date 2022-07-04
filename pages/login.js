@@ -6,7 +6,7 @@ import { postData } from "../utils/fetchData";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 
-function login() {
+function Login() {
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
 
@@ -87,4 +87,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
