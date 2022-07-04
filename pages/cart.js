@@ -4,7 +4,7 @@ import { DataContext } from "../store/GlobalState";
 import CartItem from "../components/CartItem";
 import { getData, postData } from "../utils/fetchData";
 import { useRouter } from "next/router";
-import loginValidate from "../utils/LoginValidate";
+import loginValidate from "../utils/loginValidate";
 import Cookie from "js-cookie";
 
 function Cart() {

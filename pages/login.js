@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState, useContext, useEffect } from "react";
 import { DataContext } from "../store/GlobalState";
-import loginValidate from "../utils/LoginValidate";
+import loginValidate from "../utils/loginValidate";
 import { postData } from "../utils/fetchData";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
