@@ -13,7 +13,7 @@ export const imageUpload = async (images) => {
 
     const data = await res.json();
     console.log(data);
-    imgArr.push(data.secure_url);
+    imgArr.push({ url: data.secure_url });
   }
   return imgArr;
 };

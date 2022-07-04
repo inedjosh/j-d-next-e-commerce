@@ -1,35 +1,39 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { DataContext } from "./../../store/GlobalState";
 import { useContext } from "react";
 import { addToCart } from "./../../store/Actions";
+import Modal from "../Modal";
 
 function ProductCard({ products }) {
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth } = state;
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleDelete = (product) => {
+    setOpenModal(true);
+    dispatch({
+      type: "ADD_MODAL",
+      payload: [
+        {
+          data: products,
+          id: product._id,
+          title: product.title,
+          type: "DELETE_PRODUCT",
+        },
+      ],
+    });
+  };
+
   const adminButtons = (product) => {
     return (
-      <div>
+      <div className="btnDiv">
         <Link href={`/create/${product._id}`}>
-          <a>Edit Product </a>
+          <a className="view">Edit Product </a>
         </Link>
-        <button
-          onClick={() =>
-            dispatch({
-              type: "ADD_MODAL",
-              payload: [
-                {
-                  data: "",
-                  id: product._id,
-                  title: product.title,
-                  type: "DELETE_PRODUCT",
-                },
-              ],
-            })
-          }
-        >
+        <button className="add" onClick={() => handleDelete(product)}>
           Delete
         </button>
       </div>
@@ -38,11 +42,14 @@ function ProductCard({ products }) {
 
   const userButtons = (product) => {
     return (
-      <div>
+      <div className="btnDiv">
         <Link href={`/product/${product._id}`}>
-          <a>View Product </a>
+          <a className="view">View Product </a>
         </Link>
-        <button onClick={() => dispatch(addToCart(product, cart))}>
+        <button
+          className="add"
+          onClick={() => dispatch(addToCart(product, cart))}
+        >
           Add to cart
         </button>
       </div>
@@ -53,31 +60,41 @@ function ProductCard({ products }) {
     <div>
       <div>
         <div>
+          {openModal && <Modal />}
           <h1>Top products for you</h1>
-          <div>
+          <div className="homeDiv">
             {products.map((product) => (
-              <div key={product._id}>
+              <div className="productCard" key={product._id}>
                 <div>
                   <img
-                    width={200}
-                    height={200}
-                    src={product.images[0]}
+                    className="productImage"
+                    src={product.images[0].url}
                     alt={product.title}
                   />
                 </div>
-                <div>
+                <div className="cardContent">
                   <div>
-                    <div>
-                      <h2 href={product.href}>{product.title}</h2>
-                    </div>
-                    <div>
-                      {auth.user.role === "admin"
-                        ? adminButtons(product)
-                        : userButtons(product)}
-                    </div>
+                    <h2 href={product.href}>{product.title}</h2>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: 10,
+                    }}
+                  >
+                    <p>N{product.amount}</p>
                     <p>{product.colors[0]}</p>
                   </div>
-                  <p>{product.amount}</p>
+                  <div>
+                    <div>
+                      <div>
+                        {auth.user?.role === "admin"
+                          ? adminButtons(product)
+                          : userButtons(product)}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

@@ -11,10 +11,10 @@ function productId({ product }) {
     <div>
       {productData.images.length > 1 ? (
         productData.images.map((img) => {
-          return <img src={img} alt={productData.title} />;
+          return <img src={img.url} alt={productData.title} />;
         })
       ) : (
-        <img src={productData.images[0]} alt={productData.title} />
+        <img src={productData.images[0].url} alt={productData.title} />
       )}
       <p>{productData.title}</p>
       <p>{productData.amount}</p>

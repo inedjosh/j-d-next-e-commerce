@@ -17,7 +17,7 @@ const ProductsManager = () => {
   const [product, setProduct] = useState(initialState);
   const { title, amount, inStock, description, content, category } = product;
 
-  const [productType, setProductType] = useState([]);
+  const [productType, setProductType] = useState("");
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
 
@@ -101,15 +101,7 @@ const ProductsManager = () => {
 
   const handleSelectType = (e, type) => {
     e.preventDefault();
-
-    if (productType.includes(type.type)) {
-      return dispatch({
-        type: "NOTIFY",
-        payload: { error: "Product type has been added already." },
-      });
-    } else {
-      setProductType([...productType, type.type]);
-    }
+    setProductType(type.type);
   };
 
   const handleSelectSize = (e, size) => {
@@ -137,21 +129,23 @@ const ProductsManager = () => {
     }
   };
 
-  //   useEffect(() => {
-  //     if (id) {
-  //       setOnEdit(true);
-  //       getData(`product/${id}`).then((res) => {
-  //         setProduct(res.product);
-  //         setImages(res.product.images);
-  //       });
-  //     } else {
-  //       setOnEdit(false);
-  //       setProduct(initialState);
-  //       setImages([]);
-  //     }
-  //   }, [id]);
+  useEffect(() => {
+    if (id) {
+      setOnEdit(true);
+      getData(`product/${id}`).then((res) => {
+        setProduct(res.product);
+        setImages(res.product.images);
+        setProductType(res.product.productType);
+      });
+    } else {
+      setOnEdit(false);
+      setProduct(initialState);
+      setImages([]);
+    }
+  }, [id]);
 
   const handleChangeInput = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
     dispatch({ type: "NOTIFY", payload: {} });
@@ -193,6 +187,8 @@ const ProductsManager = () => {
     setImages([...images, ...newImages]);
   };
 
+  console.log(images);
+
   const deleteImage = (index) => {
     const newArr = [...images];
     newArr.splice(index, 1);
@@ -228,7 +224,10 @@ const ProductsManager = () => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
     let media = [];
 
-    media = await imageUpload(images);
+    const imgNewURL = images.filter((img) => !img.url);
+    const imgOldURL = images.filter((img) => img.url);
+
+    if (imgNewURL.length > 0) media = await imageUpload(imgNewURL);
 
     console.log(media);
     let res;
@@ -237,16 +236,12 @@ const ProductsManager = () => {
         `product/${id}`,
         {
           ...product,
-          images: [...media],
+          images: [...imgOldURL, ...media],
           productType,
           colors,
           sizes,
           title,
-          amount,
-          description,
-          content,
           inStock,
-          category,
         },
         auth.token
       );
@@ -257,16 +252,10 @@ const ProductsManager = () => {
         "product",
         {
           ...product,
-          images: [...media],
+          images: [...imgOldURL, ...media],
           productType,
           colors,
           sizes,
-          title,
-          amount,
-          description,
-          content,
-          category,
-          inStock,
         },
         auth.token
       );
@@ -352,7 +341,7 @@ const ProductsManager = () => {
             >
               <option value="all">All Products</option>
               {categories.map((item) => (
-                <option key={item._id} value={item.name}>
+                <option key={item._id} value={item._id}>
                   {item.name}
                 </option>
               ))}

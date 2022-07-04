@@ -21,7 +21,7 @@ const CartItem = ({ cart, dispatch, item }) => {
 
   return (
     <div key={item._id}>
-      <img width={150} height={150} src={item.images[0]} alt={item.title} />
+      <img width={150} height={150} src={item.images[0].url} alt={item.title} />
 
       <p>{item.title}</p>
       <p>{item.amount}</p>
