@@ -10,8 +10,8 @@ function ProductId({ product }) {
   return (
     <div>
       {productData.images.length > 1 ? (
-        productData.images.map((img) => {
-          return <img src={img.url} alt={productData.title} />;
+        productData.images.map((img, index) => {
+          return <img key={index} src={img.url} alt={productData.title} />;
         })
       ) : (
         <img src={productData.images[0].url} alt={productData.title} />
