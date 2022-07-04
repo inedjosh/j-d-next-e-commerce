@@ -1,5 +1,5 @@
-import connectDB from "../../../utils/connectDB";
-import Users from "../../../models/userModel";
+import connectDB from "../../../utils/connectDb";
+import Users from "../../../models/UserModel";
 import bcrypt from "bcrypt";
 import {
   createAccessToken,

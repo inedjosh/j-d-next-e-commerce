@@ -1,4 +1,4 @@
-import connectDB from "../../../utils/connectDB";
+import connectDB from "../../../utils/connectDb";
 import Products from "../../../models/ProductModel";
 import auth from "../../../middleware/auth";
 

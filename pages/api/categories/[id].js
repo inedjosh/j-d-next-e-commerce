@@ -1,6 +1,6 @@
-import connectDB from "../../../utils/connectDB";
+import connectDB from "../../../utils/connectDb";
 import Categories from "./../../../models/Categories";
-import Products from "../../../models/productModel";
+import Products from "../../../models/ProductModel";
 import auth from "../../../middleware/auth";
 
 connectDB();

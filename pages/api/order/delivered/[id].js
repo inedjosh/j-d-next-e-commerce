@@ -1,5 +1,5 @@
-import connectDB from "../../../../utils/connectDB";
-import Orders from "../../../../models/orderModel";
+import connectDB from "../../../../utils/connectDb";
+import Orders from "../../../../models/OrderModel";
 import auth from "../../../../middleware/auth";
 
 connectDB();
