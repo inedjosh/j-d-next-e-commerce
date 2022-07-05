@@ -319,7 +319,7 @@ const ProductsManager = () => {
             className="d-block my-4 w-100 p-2"
             value={description}
           />
-
+          <label htmlFor="content">Content</label>
           <textarea
             name="content"
             id="content"
