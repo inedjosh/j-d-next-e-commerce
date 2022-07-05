@@ -273,6 +273,7 @@ const ProductsManager = () => {
       </Head>
       <form className="row">
         <div className="col-md-6">
+          <label>Title</label>
           <input
             type="text"
             name="title"
