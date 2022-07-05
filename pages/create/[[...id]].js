@@ -308,7 +308,7 @@ const ProductsManager = () => {
               />
             </div>
           </div>
-
+          <label htmlFor="description">Description</label>
           <textarea
             name="description"
             id="description"
