@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { usePaystackPayment } from "react-paystack";
 import { postData } from "../utils/fetchData";
 import { DataContext } from "./../store/GlobalState";
+import { useRouter } from "next/router";
 
 const Paystack = ({ auth, total, cart, address, phone }) => {
   const { state, dispatch } = useContext(DataContext);
   const { orders } = state;
-  console.log(orders);
+  const router = useRouter();
   const config = {
     reference: new Date().getTime(),
     email: auth.user.email,
@@ -28,6 +29,7 @@ const Paystack = ({ auth, total, cart, address, phone }) => {
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
       dispatch({ type: "ADD_CART", payload: [] });
+      router.push("/account");
       dispatch({ type: "ADD_ORDERS", payload: [...orders, res.newOrder] });
       return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
     });
