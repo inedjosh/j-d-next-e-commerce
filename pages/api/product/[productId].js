@@ -82,18 +82,6 @@ const updateProduct = async (req, res) => {
     );
 
     res.json({ msg: "Success! Updated a product" });
-    console.log(
-      title,
-      amount,
-      inStock,
-      description,
-      content,
-      category,
-      images,
-      productType,
-      colors,
-      sizes
-    );
   } catch (err) {
     return res.status(500).json({ err: err.message });
   }
