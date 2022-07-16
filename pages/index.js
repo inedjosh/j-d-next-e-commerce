@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useState, useEffect, useContext } from "react";
-import styles from "../styles/Home.module.css";
 import { getData } from "../utils/fetchData";
 import ProductCard from "../components/Product/ProductCard";
 import { useRouter } from "next/router";

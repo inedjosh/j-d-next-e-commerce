@@ -1,16 +1,15 @@
-import React from 'react'
-import Header from './Header'
-import Notify from './Notify'
+import React from "react";
+import Header from "./Header";
+import Notify from "./Notify";
 
-function Layout({children}) {
+function Layout({ children }) {
   return (
-    <div style={{padding:10}}>
-
-        <Header />
-        <Notify />
-        {children}
+    <div className="text-gray-700 font-body">
+      <Header />
+      <Notify />
+      {children}
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
