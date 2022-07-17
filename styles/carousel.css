@@ -1,0 +1,66 @@
+.carousel {
+  overflow: hidden;
+}
+
+.inner {
+  white-space: nowrap;
+  transition: transform 1s;
+}
+
+.carouselItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: white;
+  height: 300px;
+}
+.indicators {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  margin: 5px;
+}
+
+.active {
+  background-color: black;
+  color: white;
+  width: 20px;
+  height: 5px;
+  margin: 5px;
+}
+
+.unActive {
+  background-color: grey;
+  color: grey;
+  width: 20px;
+  height: 5px;
+  margin: 5px;
+}
+
+.nextBtn {
+  font-size: 30px;
+  color: #3300cc;
+}
+
+.buttonPrev {
+  position: absolute;
+  top: 38%;
+  left: 10px;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 100%;
+  padding: 5px;
+}
+
+.buttonNext {
+  position: absolute;
+  top: 38%;
+  right: 10px;
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 100%;
+  padding: 5px;
+}

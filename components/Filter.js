@@ -174,7 +174,7 @@ const Filter = ({ state }) => {
         )}
         <div className="hidden sm:block">
           <select
-            className="w-full ml-1 border pl-2  text-sm py-2 px-4 border-gray-300  focus:outline-none focus:bg-white focus:border-gray-200 leading-tight"
+            className="w-full ml-1 border pl-2  text-sm py-3 px-4 border-gray-300  focus:outline-none focus:bg-white focus:border-gray-200 leading-tight"
             value={sort}
             onChange={handleSort}
           >
