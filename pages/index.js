@@ -16,7 +16,7 @@ export default function Home(props) {
   const [products, setProducts] = useState(props.products);
   const router = useRouter();
   const [page, setPage] = useState(1);
-  console.log(products);
+
   const { state, dispatch } = useContext(DataContext);
 
   useEffect(() => {
@@ -66,10 +66,6 @@ export default function Home(props) {
             </button>
           </div>
         )}
-      </div>
-      <div className="bg-gray-100 md:px-20 px-5 mt-10 py-10">
-        <Services />
-        <Footer />
       </div>
     </div>
   );

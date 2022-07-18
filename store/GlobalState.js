@@ -13,6 +13,7 @@ export const DataProvider = ({ children }) => {
     users: [],
     modal: [],
     categories: [],
+    products: [],
   };
 
   const [state, dispatch] = useReducer(reducers, initialState);
@@ -70,6 +71,16 @@ export const DataProvider = ({ children }) => {
           return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
         dispatch({ type: "ADD_USERS", payload: res.users });
+      });
+    }
+  }, [auth.token]);
+
+  useEffect(() => {
+    if (auth.token) {
+      getData("product/getProducts", auth.token).then((res) => {
+        console.log(`product: ${res}`);
+
+        dispatch({ type: "ADD_PRODUCT", payload: { res } });
       });
     }
   }, [auth.token]);

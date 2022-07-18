@@ -166,7 +166,7 @@ function Header() {
             >
               <div className="relative ">
                 <div
-                  className="w-5 h-5 bg-gray-800 flex justify-center items-center absolute top-0"
+                  className="w-5 h-5 bg-red-600 flex justify-center items-center absolute top-0"
                   style={{
                     borderRadius: "100%",
                     marginTop: -10,

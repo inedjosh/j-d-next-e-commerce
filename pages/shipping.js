@@ -19,7 +19,7 @@ function Shipping(props) {
             <li>payment methods</li>
           </ul>
         </div>
-        <div className="md:col-span-3 md:border md:ml-10 p-1 md:py-10 md:px-10 border-gray-200">
+        <div className="md:col-span-3 md:border md:ml-10 p-1 md:py-10 md:px-10 border-gray-200 text-xs">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -102,7 +102,6 @@ function Shipping(props) {
           mollit anim id est laborum.
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

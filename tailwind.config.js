@@ -9,6 +9,9 @@ module.exports = {
       colors: {
         primary: "red",
       },
+      height: {
+        imgFull: "85vh",
+      },
       fontFamily: {
         body: ["Montserrat"],
       },

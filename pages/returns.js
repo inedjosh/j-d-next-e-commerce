@@ -87,7 +87,6 @@ function Retruns(props) {
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         v
       </p>
-      <Footer />
     </div>
   );
 }
