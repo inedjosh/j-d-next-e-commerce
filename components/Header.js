@@ -17,7 +17,7 @@ function Header() {
 
   const isActive = (route) => {
     if (route === router.pathname) {
-      return "active";
+      return "text-primary";
     } else {
       return "";
     }
@@ -39,20 +39,62 @@ function Header() {
   const adminNav = () => {
     return (
       <div>
-        <li>
+        <li className="py-2 uppercase font-normal flex items-center">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+            ></path>
+          </svg>
           <Link href="/users">
-            <a>Users</a>
+            <a className="pl-3">Users</a>
           </Link>
         </li>
-        <li>
+        <li className="py-2 uppercase font-normal flex items-center">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+            ></path>
+          </svg>
           <Link href="/create">
-            <a>Products</a>
+            <a className="pl-3">Products</a>
           </Link>
         </li>
 
-        <li>
+        <li className="py-2 uppercase font-normal flex items-center">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            ></path>
+          </svg>
           <Link href="/categories">
-            <a>Categories</a>
+            <a className="pl-3">Categories</a>
           </Link>
         </li>
       </div>
@@ -63,37 +105,66 @@ function Header() {
   if (auth.user) {
     dropDownTemplate = (
       <div>
-        <li>
+        <li className="py-2 uppercase font-normal flex items-center">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
           <Link href="/account">
-            <a>My Profile</a>
+            <a className="pl-2">My Profile</a>
           </Link>
         </li>
-        <li>
+        {/* <li className="py-2 uppercase font-normal flex items-center">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+            ></path>
+          </svg>
           <Link href="/orders">
-            <a>orders</a>
+            <a className="pl-2">orders</a>
           </Link>
-        </li>
+        </li> */}
         {auth.user.role === "admin" && auth.user.root === true && adminNav()}
         <hr />
-        <li>
-          <Link href="#">
-            <div>
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                ></path>
-              </svg>
-              <a onClick={handleLogout}>Logout</a>
-            </div>
+        <li
+          onClick={handleLogout}
+          className="py-2 uppercase font-normal flex items-center"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            ></path>
+          </svg>
+          <Link className="cursor-pointer" href="#">
+            <a className="pl-3">Logout</a>
           </Link>
         </li>
       </div>
@@ -101,30 +172,44 @@ function Header() {
   } else {
     dropDownTemplate = (
       <div>
-        <div>
-          <Link href="/signup">
-            <a>Signup</a>
+        <div className="flex items-center py-2">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+            ></path>
+          </svg>
+          <Link className="cursor-pointer" href="/signup">
+            <a className="pl-3">Signup</a>
           </Link>
         </div>
-        <Link href="/login">
-          <div>
-            <svg
-              class="w-4 h-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-              ></path>
-            </svg>
-            <a>Login</a>
-          </div>
-        </Link>
+        <div className="flex items-center py-2">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+            ></path>
+          </svg>
+          <Link className="cursor-pointer" href="/login">
+            <a className="pl-3">Login</a>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -196,12 +281,12 @@ function Header() {
         </li>
         <li
           onClick={() => setShowDropDown(!showDropDown)}
-          className="mx-2 md:mx-8 hidden sm:block md:flex md:items-center"
+          className={`mx-2 md:mx-8 hidden sm:block md:flex md:items-center `}
         >
           <div style={{ marginRight: 20 }}>
             <a
               style={{ marginRight: 5 }}
-              className={showDropDown ? "active flex" : "flex"}
+              className={showDropDown ? "text-primary flex" : "flex"}
             >
               <div className="relative "></div>
               <svg
@@ -231,13 +316,6 @@ function Header() {
               <BsChevronUp style={{ marginLeft: -15 }} />
             )}
           </div>
-          {showDropDown === true && (
-            <div className="absolute top-12 shadow pl-2 text-sm">
-              <ul style={{ display: "flex", flexDirection: "column" }}>
-                {dropDownTemplate}
-              </ul>
-            </div>
-          )}
         </li>
         <li className="mx-2 md:mx-8">
           <Link href="/help">
@@ -266,6 +344,11 @@ function Header() {
           </Link>
         </li>
       </ul>
+      {showDropDown === true && (
+        <div className="shadow absolute mt-10 right-[12%] bg-white px-5 z-10">
+          <div>{dropDownTemplate}</div>
+        </div>
+      )}
     </div>
   );
 }

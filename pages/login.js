@@ -59,29 +59,65 @@ function Login() {
   }, [auth]);
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="flex flex-col justify-center items-center w-full">
+      <h1 className="uppercase mt-10">Login</h1>
+      <p className="text-gray-400 mb-10 text-center text-sm">
+        Login and start shopping
+      </p>
       <form>
-        <div>
+        <div className="flex flex-col my-5">
           <label>Email</label>
           <input
             type={"email"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="w-[90vw] md:w-[500px]  py-3
+            px-4 text-gray-700 bg-white lg:w-[700px] outline-none  leading-tight
+            focus:outline-none
+            focus:bg-white
+            focus:border-gray-300
+            border-gray-300"
           />
         </div>
-        <div>
+        <div className="flex flex-col my-5">
           <label>Password</label>
           <input
             type={"password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="w-[90vw] md:w-[500px]  py-3
+            px-4 text-gray-700 bg-white lg:w-[700px] outline-none  leading-tight
+            focus:outline-none
+            focus:bg-white
+            focus:border-gray-300
+            border-gray-300"
           />
+          <Link href="/forgotpasword">
+            <a className="text-gray-900 underline ml-1 mt-3 text-right text-sm">
+              Forgot password
+            </a>
+          </Link>
         </div>
-        <Link href="/account">
-          <a>Go back</a>
-        </Link>
-        <input type={"submit"} value={"login"} onClick={handleSubmit} />
+
+        <input
+          type={"submit"}
+          value={"login"}
+          onClick={handleSubmit}
+          className="w-full md:w-[500px]  py-3
+            px-4 lg:w-[700px] outline-none  leading-tight
+           bg-gray-700 
+           text-white mt-10
+            border-gray-300   uppercase
+          text-bold"
+        />
+        <div className="flex justify-center mt-5">
+          <p className="flex items-center text-sm ">
+            <span className="text-gray-400"> Dont have an account?</span>{" "}
+            <Link href="/signup">
+              <a className="text-gray-900 underline ml-1"> Register</a>
+            </Link>
+          </p>
+        </div>
       </form>
     </div>
   );

@@ -44,45 +44,88 @@ function Signup() {
   }, [auth, router]);
 
   return (
-    <div>
-      <h1>register</h1>
+    <div className="flex flex-col justify-center items-center w-full">
+      <h1 className="uppercase mt-10">register</h1>
+      <p className="text-gray-400 mb-10 text-center text-sm">
+        Register and enjoy our amazing products and offers
+      </p>
       <form>
-        <div>
-          <label>Full Name</label>
+        <div className="flex flex-col my-5">
+          <label className="text-sm">Full Name</label>
           <input
             type={"text"}
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="w-[90vw] md:w-[500px]  py-3
+            px-4 text-gray-700 bg-white lg:w-[700px] outline-none  leading-tight
+            focus:outline-none
+            focus:bg-white
+            focus:border-gray-300
+            border-gray-300"
           />
         </div>
-        <div>
-          <label>Email</label>
+        <div className="flex flex-col my-5">
+          <label className="text-sm">Email</label>
           <input
             type={"email"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="w-full md:w-[500px]  py-3
+            px-4 text-gray-700 bg-white lg:w-[700px] outline-none  leading-tight
+            focus:outline-none
+            focus:bg-white
+            focus:border-gray-300
+            border-gray-300"
           />
         </div>
-        <div>
-          <label>Password</label>
+        <div className="flex flex-col my-5">
+          <label className="text-sm">Password</label>
           <input
             type={"password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="w-full md:w-[500px]  py-3
+            px-4 text-gray-700 bg-white lg:w-[700px] outline-none  leading-tight
+            focus:outline-none
+            focus:bg-white
+            focus:border-gray-300
+            border-gray-300"
           />
         </div>
-        <div>
-          <label>Confirm Password</label>
+        <div className="flex flex-col my-5">
+          <label className="text-sm">Confirm Password</label>
           <input
             type={"password"}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="w-full md:w-[500px]  py-3
+            px-4 text-gray-700 bg-white lg:w-[700px] outline-none  leading-tight
+            focus:outline-none
+            focus:bg-white
+            focus:border-gray-300
+            border-gray-300"
           />
         </div>
-        <Link href="/account">
-          <a>Go back</a>
-        </Link>
-        <input type={"submit"} value={"register"} onClick={handleSubmit} />
+
+        <input
+          type={"submit"}
+          value={"register"}
+          onClick={handleSubmit}
+          className="w-full md:w-[500px]  py-3
+            px-4 lg:w-[700px] outline-none  leading-tight
+           bg-gray-700 
+           text-white mt-10
+            border-gray-300   uppercase
+          text-bold"
+        />
+        <div className="flex justify-center mt-5">
+          <p className="flex items-center text-sm ">
+            Already have an account?{" "}
+            <Link href="/login">
+              <a className="text-primary">Login</a>
+            </Link>
+          </p>
+        </div>
       </form>
     </div>
   );
