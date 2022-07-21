@@ -12,19 +12,10 @@ const ProductsManager = () => {
     description: "",
     content: "",
     category: "",
-    categoryName: "",
     inStock: true,
   };
   const [product, setProduct] = useState(initialState);
-  const {
-    title,
-    amount,
-    inStock,
-    description,
-    content,
-    category,
-    categoryName,
-  } = product;
+  const { title, amount, inStock, description, content, category } = product;
 
   const [productType, setProductType] = useState("");
   const [colors, setColors] = useState([]);

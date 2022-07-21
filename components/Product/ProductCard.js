@@ -29,9 +29,9 @@ function ProductCard({ products }) {
 
   const adminButtons = (product) => {
     return (
-      <div className="btnDiv">
+      <div className="flex justify-between items-center px-2">
         <Link href={`/create/${product._id}`}>
-          <a className="view">Edit Product </a>
+          <a className="view">Edit </a>
         </Link>
         <button className="add" onClick={() => handleDelete(product)}>
           Delete
@@ -66,8 +66,8 @@ function ProductCard({ products }) {
           </h1>
           <div className="grid-cols-2 grid md:gap-16 gap-8  md:grid-cols-3 mt-10	">
             {products.map((product) => (
-              <Link key={product._id} href={`/product/${product._id}`}>
-                <a>
+              <div>
+                {auth.user?.role === "admin" ? (
                   <div className="productCard">
                     <div>
                       <img
@@ -86,9 +86,36 @@ function ProductCard({ products }) {
                         <p className="text-l font-bold">N{product.amount}</p>
                       </div>
                     </div>
+                    {adminButtons(product)}
                   </div>
-                </a>
-              </Link>
+                ) : (
+                  <Link key={product._id} href={`/product/${product._id}`}>
+                    <a>
+                      <div className="productCard">
+                        <div>
+                          <img
+                            className="h-40 md:h-60 w-full object-cover"
+                            src={product.images[0].url}
+                            alt={product.title}
+                          />
+                        </div>
+                        <div className="px-2 py-2">
+                          <div>
+                            <h2 className="text-black-100 opacity-60 capitalize">
+                              {product.title}
+                            </h2>
+                          </div>
+                          <div>
+                            <p className="text-l font-bold">
+                              N{product.amount}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
         </div>

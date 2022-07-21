@@ -84,20 +84,10 @@ function Order(props) {
                   </div>
                 </a>
               </Link>
-              {auth.user.role === "admin" &&
+              {auth.user?.role === "admin" &&
                 auth.user.root === true &&
                 order.delivered !== true && (
-                  <button
-                    onClick={() => markDelivered(order)}
-                    style={{
-                      backgroundColor: "orange",
-                      width: 200,
-                      height: 40,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
+                  <button onClick={() => markDelivered(order)}>
                     Mark as delivered
                   </button>
                 )}

@@ -28,10 +28,6 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    categoryName: {
-      type: String,
-      required: true,
-    },
     sold: {
       type: Number,
       required: true,
